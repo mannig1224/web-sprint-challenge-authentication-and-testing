@@ -3,7 +3,7 @@ const User = require('../users/users-model');
 const registerPayload = async (req, res, next) => {
     try {
         const { username, password } = req.body;
-        if (!username.trim() || !password.trim()) {
+        if (!username || !password) {
             res.status(400).json({
                 message: "username and password required"
             })
