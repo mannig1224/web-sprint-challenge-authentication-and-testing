@@ -3,7 +3,7 @@ const User = require('../users/users-model');
 const registerPayload = async (req, res, next) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) {
+        if (!username.trim() || !password.trim()) {
             res.status(400).json({
                 message: "username and password required"
             })
@@ -41,7 +41,7 @@ const checkUsernameExists = async (req, res, next) => {
      if (users) {
        next()
      } else {
-       next({ status: 401, message: "Invalid credentials"})
+       next({ status: 401, message: "invalid credentials"})
      }
     } catch (err) {
       next(err)
